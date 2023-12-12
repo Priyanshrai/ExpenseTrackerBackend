@@ -11,7 +11,7 @@ form.addEventListener("submit", (event)=>{
         email: email,
         password:password
     };
-    axios.post("http://18.212.240.45:5000/users/login-user",data)
+    axios.post("https://18.212.240.45:5000/users/login-user",data)
     .then((response)=>{
         const message = response.data.message;
         const alert = document.createElement('div');
