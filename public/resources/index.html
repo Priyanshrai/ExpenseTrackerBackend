@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline';">
+
 
   <title>Signup Page</title>
   <style>
@@ -65,33 +67,7 @@
     <button type="button" onclick="signup()">Sign Up</button>
   </form>
 
-  <script>
-    async function signup() {
-      const name = document.getElementById('name').value;
-      const email = document.getElementById('email').value;
-      const password = document.getElementById('password').value;
-
-      try {
-        const response = await fetch('https://18.212.240.45:5000/users/login-user', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ name, email, password }),
-        });
-
-        const data = await response.json();
-
-        if (response.ok) {
-          alert(data.message);
-        } else {
-          alert(data.error);
-        }
-      } catch (error) {
-        console.error('Error:', error);
-      }
-    }
-  </script>
+  <script src="script.js"></script>
 
 </body>
 </html>
