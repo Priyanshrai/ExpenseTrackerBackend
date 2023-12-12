@@ -5,12 +5,13 @@ const jwt = require('jsonwebtoken');
 
 const addUser = async (req, res, next) => {
   try {
+   
     const { name, email, password } = req.body;
 
-    const saltRounds = 10;
-    const hash = bcrypt.hash(password, saltRounds);
+     const saltRounds = 10;
+     const hash = bcrypt.hashSync(password, saltRounds);
 
-    await UserDetails.create({ name, email, password: hash });
+    await UserDetails.create({ name, email, password: password });
     res.status(201).json({ message: 'Successfully created a new user' });
   } catch (err) {
     if (err instanceof Sequelize.UniqueConstraintError) {
