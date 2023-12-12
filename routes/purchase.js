@@ -8,4 +8,4 @@ router.get("/premiummembership",userAuthentication.authenticate,purchaseControll
 router.post("/updatetransactionstatus",userAuthentication.authenticate,purchaseController.updateTransactionStatus)
 router.get("/premiumstatus",userAuthentication.authenticate,purchaseController.getPremiumStatus)
 
-module.exports=router;
+module.exports=router; 
