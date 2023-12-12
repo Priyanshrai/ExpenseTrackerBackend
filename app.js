@@ -1,7 +1,9 @@
 const express = require('express');
 const bodyParser = require("body-parser");
 const sequelize = require("./util/database");
-
+const https = require('https');
+//to save access logs in a file
+const fs= require('fs');
 
 var cors = require("cors");
 
@@ -13,10 +15,9 @@ const compression = require('compression');
 const morgan = require('morgan');
 //path
 const path = require('path');
-//to save access logs in a file
-const fs= require('fs');
-const accessLogStream = fs.createWriteStream(path.join(__dirname,'access.log'),{flags:'a'});
 
+const privateKey=fs.readFileSync('server.key');
+const cert=fs.readFileSync('server.cert');
 
 //env
 const dotenv = require("dotenv");
@@ -37,6 +38,9 @@ const userRoutes=require("./routes/users")
 const orderRoutes=require("./routes/purchase")
 const premiumRoutes=require("./routes/premium")
 const resetPasswordRoutes = require('./routes/resetPassword')
+
+
+const accessLogStream = fs.createWriteStream(path.join(__dirname,'access.log'),{flags:'a'});
 
 
 //helmet
@@ -77,9 +81,11 @@ Forgotpassword.belongsTo(User);
 
 sequelize
   .sync()
-  .then((result) => {
-    //console.log(result);
-    app.listen(process.env.PORT || 5000);
+  .then(() => {
+    const server = https.createServer({ key: privateKey, cert: cert }, app);
+    server.listen(process.env.PORT || 5000, () => {
+      console.log(`Server is running on port ${process.env.PORT || 5000}`);
+    });
   })
   .catch((err) => {
     console.log(err);
