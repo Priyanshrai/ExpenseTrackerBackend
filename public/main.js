@@ -16,7 +16,7 @@ function saveToLocalStorage(event) {
   };
 
   axios
-    .post("http://18.212.240.45:5000/expense/add-expense", obj, {
+    .post("https://18.212.240.45:5000/expense/add-expense", obj, {
       headers: { Authorization: token },
     })
     .then((res) => {
@@ -34,6 +34,10 @@ function saveToLocalStorage(event) {
 
 let currentPage = 1;
 window.addEventListener("DOMContentLoaded", () => {
+
+
+
+
   
   const page = 1;
   const itemsPerPageDropdown = document.getElementById("itemsPerPage");
@@ -56,7 +60,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
 function getExpenses(page, itemsPerPage) {
   axios
-    .get(`http://18.212.240.45:5000/expense/get-expense?page=${page}&itemsPerPage=${itemsPerPage}`, {
+    .get(`https://18.212.240.45:5000/expense/get-expense?page=${page}&itemsPerPage=${itemsPerPage}`, {
       headers: { Authorization: token },
     })
     .then((res) => {
@@ -142,7 +146,7 @@ function editUserDetails(Expenses, Description, Category, userId) {
 
 function deleteUser(userId) {
   axios
-    .delete(`http://18.212.240.45:5000/expense/delete-expense/${userId}`, {
+    .delete(`https://18.212.240.45:5000/expense/delete-expense/${userId}`, {
       headers: { Authorization: token },
     })
     .then(() => {
@@ -164,7 +168,7 @@ window.addEventListener("DOMContentLoaded", async function () {
   
   try {
     const response = await axios.get(
-      "http://18.212.240.45:5000/purchase/premiumstatus",
+      "https://18.212.240.45:5000/purchase/premiumstatus",
       {
         headers: { Authorization: token },
       }
@@ -200,7 +204,7 @@ window.addEventListener("DOMContentLoaded", async function () {
             try {
              
               const response = await axios.get(
-                "http://18.212.240.45:5000/premium/leaderboard",
+                "https://18.212.240.45:5000/premium/leaderboard",
                 {
                   headers: { Authorization: token },
                 }
@@ -285,7 +289,7 @@ document.getElementById("rzp-button").onclick = async function (e) {
   try {
    
     const response = await axios.get(
-      "http://18.212.240.45:5000/purchase/premiummembership",
+      "https://18.212.240.45:5000/purchase/premiummembership",
       {
         headers: { Authorization: token },
       }
@@ -299,7 +303,7 @@ document.getElementById("rzp-button").onclick = async function (e) {
       //This handler will handle the sucess full payment
       handler: async function (response) {
         await axios.post(
-          "http://18.212.240.45:5000/purchase/updatetransactionstatus",
+          "https://18.212.240.45:5000/purchase/updatetransactionstatus",
           {
             order_id: options.order_id,
             payment_id: response.razorpay_payment_id,
@@ -332,7 +336,7 @@ document.getElementById("rzp-button").onclick = async function (e) {
 function download() {
   
   axios
-    .get("http://18.212.240.45:5000/expense/download", {
+    .get("https://18.212.240.45:5000/expense/download", {
       headers: { "Authorization": token }, // Corrected the quotation marks
     })
     
