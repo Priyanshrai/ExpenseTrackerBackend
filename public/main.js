@@ -21,6 +21,7 @@ function saveToLocalStorage(event) {
     })
     .then((res) => {
       const newExpense = res.data.newExpenseDetail;
+      console.log(newExpense);
       // Wrap the response object in an array 
       showNewUsersOnScreen([newExpense]);
     })
