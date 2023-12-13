@@ -30,10 +30,12 @@ const addExpense = async (req, res) => {
   try {
     t = await sequelize.transaction();
     const { Expenses, Description, Category } = req.body;
+    console.log("1");
 
     if (Expenses === undefined || Expenses.length === 0) {
       return res.status(400).json({ success: false, message: 'Parameters Missing' });
     }
+    console.log("2");
 
     const createdExpense = await expense.create(
       {
@@ -44,7 +46,7 @@ const addExpense = async (req, res) => {
       },
       { transaction: t }
     );
-
+    console.log("3");
     const totalExpense = Number(req.user.totalExpense) + Number(Expenses);
 
     await User.update(
@@ -56,8 +58,10 @@ const addExpense = async (req, res) => {
         transaction: t,
       }
     );
+    console.log("4");
     await t.commit();
     res.status(200).json({ newExpenseDetail: createdExpense });
+    
   } catch (err) {
     await t.rollback();
     logger.error('Error in addExpense:', err);
