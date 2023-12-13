@@ -30,7 +30,7 @@
       <div class="col-md-8 col-lg-6">
         <h2 class="mb-4 text-center">Expense Tracker <button id="logout" class="btn btn-warning btn-sm float-end" onclick="location.href='./user/login.html'">Logout</button> </h2>
         <div id="premium-message" class="alert alert-success" role="alert"></div>
-        <form onsubmit="saveToLocalStorage(event)">
+        <form onsubmit="saveToLocalStorage(event)" method="post">
           <div class="form-group">
             <label for="expenseAmount">Expense Amount:</label>
             <input type="number" class="form-control" id="expenseAmount" name="expenseAmount" placeholder="Money Spent" required>
@@ -39,7 +39,7 @@
             <label for="description">Description:</label>
             <input type="text" class="form-control" id="description" name="description" placeholder="Text input">
           </div>
-          <div class="form-group">
+          <div class="form-group" >
             <label for="Category">Choose a Category:</label>
             <select class="form-select" id="Category" name="Category" aria-label="Select Category">
               <option selected>Choose Category</option>
@@ -91,8 +91,6 @@
 
   
   <script src="/assets/bootstrap/js/bootstrap.bundle.min.js"></script>
-    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
-    crossorigin="anonymous"></script>
   <script src="main.js"></script>
 
 
